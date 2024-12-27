@@ -129,7 +129,6 @@ def generate_email():
         html_response = client.flow.execute("sasmit/email-html-generator", html_input)
 
         return jsonify({
-            
             "html": html_response["result"]
         })
 
@@ -139,4 +138,5 @@ def generate_email():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.getenv("PORT", 5000))  # Default to 5000 if PORT is not set
+    app.run(debug=False, host="0.0.0.0", port=port)
