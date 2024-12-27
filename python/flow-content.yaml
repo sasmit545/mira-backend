@@ -1,0 +1,76 @@
+version: "1.0.1"
+
+metadata:
+  name: "email-content-generation"
+  description: "Generates email content for marketing campaigns based on product details."
+  author: "sasmit"
+  tags: [email, content, generation, marketing]
+  private: false
+
+inputs:
+  productName:
+    type: string
+    description: "The name of the product being promoted"
+    required: true
+    example: "SuperWidget"
+  productDescription:
+    type: string
+    description: "A brief description of the product"
+    required: true
+    example: "The most advanced widget on the market."
+  productOffer:
+    type: string
+    description: "The promotional offer associated with the product"
+    required: true
+    example: "50% off for a limited time!"
+  companyName:
+    type: string
+    description: "The name of the company sending the email"
+    required: true
+    example: "AwesomeTech"
+  productLink:
+    type: string
+    description: "The link to the product page"
+    required: true
+    example: "https://example.com/superwidget"
+  companyLogo:
+    type: string
+    description: "URL to the company logo image"
+    required: true
+    example: "https://example.com/logo.png"
+  ctaText:
+    type: string
+    description: "Text for the call-to-action button"
+    required: true
+    example: "Shop Now"
+
+model:
+  provider: "openai"
+  name: "gpt-4o"
+
+prompt: |
+  Generate a marketing email using the following details:
+  
+  - **Product Name**: {productName}
+  - **Product Description**: {productDescription}
+  - **Product Offer**: {productOffer}
+  - **Company Name**: {companyName}
+  - **Product Link**: {productLink}
+  - **Company Logo URL**: {companyLogo}
+  - **CTA Text**: {ctaText}
+  
+  The email should:
+  - Begin with a captivating subject line.
+  - Include a personalized introduction.
+  - Highlight the product's key features and promotional offer.
+  - End with a clear call-to-action button using the `ctaText`.
+
+readme: |
+  This flow generates marketing email content based on the product and campaign details provided.
+
+  ### Workflow:
+  1. Inputs such as product name, description, and offer are processed by the content generation model.
+  2. The model generates email content with a subject line, body, and call-to-action.
+
+  ### Outputs:
+  - A well-structured email ready for use in marketing campaigns.

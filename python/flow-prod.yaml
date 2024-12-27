@@ -1,0 +1,49 @@
+# Product Showcase Flow
+version: "1.0.0"
+
+metadata:
+  name: "email-product-showcase-generator"
+  description: "Generates prompts for product showcase images that highlight features and benefits"
+  author: "sasmit"
+  tags: [image, prompt, generation, product, showcase]
+  private: false
+
+inputs:
+  productName:
+    type: string
+    description: "The name of the product"
+    required: true
+    example: "UltraPhone X"
+  productFeatures:
+    type: array
+    description: "Key features to highlight"
+    required: true
+    example: ["edge-to-edge display", "dual camera", "wireless charging"]
+  environment:
+    type: string
+    description: "The setting or environment for the product"
+    required: true
+    example: "Modern minimalist workspace"
+  style:
+    type: string
+    description: "Visual style for the showcase"
+    required: true
+    example: "Clean and professional with soft lighting"
+
+model:
+  provider: "meta"
+  name: "llama-3.3-70b-instruct"
+
+prompt: |
+  Generate a product showcase image prompt that highlights the following:
+  Product: {productName}
+  Key Features: {productFeatures}
+  Environment: {environment}
+  Style: {style}
+  
+  Consider these aspects:
+  - Focus on product details and features
+  - Create depth and dimension
+  - Ensure proper lighting to highlight key features
+  - Include lifestyle elements that resonate with target users
+

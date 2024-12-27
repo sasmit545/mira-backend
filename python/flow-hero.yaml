@@ -1,0 +1,48 @@
+# Hero Image Flow
+version: "1.0.0"
+
+metadata:
+  name: "email-hero-image-generator"
+  description: "Generates a prompt for hero images that capture attention and convey brand message"
+  author: "sasmit"
+  tags: [image, prompt, generation, hero, email-marketing]
+  private: false
+
+inputs:
+  brandName:
+    type: string
+    description: "The name of the brand"
+    required: true
+    example: "TechCorp"
+  campaignTheme:
+    type: string
+    description: "The main theme or message of the campaign"
+    required: true
+    example: "Summer Tech Festival"
+  moodKeywords:
+    type: array
+    description: "Keywords describing the desired mood and style"
+    required: true
+    example: ["vibrant", "modern", "energetic"]
+  targetAudience:
+    type: string
+    description: "Description of the target audience"
+    required: false
+    example: "Tech-savvy millennials"
+
+model:
+  provider: "meta"
+  name: "llama-3.3-70b-instruct"
+
+prompt: |
+  Generate a hero image prompt for an email marketing campaign with the following details:
+  Brand: {brandName}
+  Campaign Theme: {campaignTheme}
+  Mood: {moodKeywords}
+  Target Audience: {targetAudience}
+  
+  Consider these aspects:
+  - Make it visually striking and attention-grabbing
+  - Ensure it aligns with brand identity
+  - Include enough negative space for text overlay
+  - Create a composition that works well in email header format

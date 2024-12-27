@@ -1,0 +1,127 @@
+version: "1.0.1"
+
+# Basic metadata for the agent
+metadata:
+  name: "email-html-generator"
+  description: "A flow that generates an HTML email template for a marketing campaign"
+  author: "sasmit"
+  tags: [email, marketing, html, template]
+  private: false
+
+# Define the input variables required
+inputs:
+  hero_img_url:
+    type: string
+    description: "URL for the hero section image"
+    required: true
+    example: "https://example.com/hero.jpg"
+  product_img_url:
+    type: string
+    description: "URL for the product image"
+    required: true
+    example: "https://example.com/product.jpg"
+  banner_img_url:
+    type: string
+    description: "URL for the banner section image"
+    required: true
+    example: "https://example.com/banner.jpg"
+  email_content:
+    type: string
+    description: "Email content for the marketing campaign"
+    required: true
+    example: "Check out our new product range!"
+  product_url:
+    type: string
+    description: "URL for the product page"
+    required: true
+    example: "https://example.com/product"
+
+# LLM configuration
+model:
+  provider: "openai"
+  name: "gpt-4o"  # Corrected model name
+
+# Dataset configuration (Optional)
+# dataset:
+#   source: "author_name/dataset_name"
+
+# Prompt template configuration
+prompt: |
+  Role-
+  You are an expert HTML email designer.
+
+  Task-
+  Based on the following inputs, generate a responsive and visually appealing email in HTML format:
+    - Hero section image: {hero_img_url}
+    - Product image: {product_img_url}
+    - Banner section image: {banner_img_url}
+    - Email content: {email_content}
+    - Product URL: {product_url}
+
+  The email should include:
+  1. A visually engaging hero section with the hero image.
+  2. A product showcase section using the product image, with a clickable link to the product page ({product_url}).
+  3. A promotional banner section with the banner image.
+  4. The email content provided, formatted for readability.
+  5. Appropriate styling for responsiveness and compatibility with major email clients.
+
+  Ensure the HTML is properly structured and follows best practices for email design.
+
+  Critics-
+  Ensure the email layout is:
+  - Fully responsive, with images that scale to fit different screen sizes.
+  - Styled using inline CSS for better compatibility across email clients.
+  - Well-structured with clear separation between sections (hero, product showcase, promotional banner).
+  - Including alt text for images to ensure readability when images do not load.
+  - Provide no extra text (pretext, context, posttext, etc.) only the email also do not put ``` ``` around the result  .
+
+  Example-
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Product Launch</title>
+  </head>
+  <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5; color: #333; line-height: 1.6;">
+    <div class="container" style="width: 100%; max-width: 600px; margin: 0 auto; background-color: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+      <div class="hero" style="position: relative; overflow: hidden;">
+        <img src="https://res.cloudinary.com/dfgoyoeml/image/upload/v1735235035/rq5biqgpgdolkezjeqpt.jpg" alt="Hero Image" style="width: 100%; height: auto; display: block;">
+      </div>
+      <div class="content" style="padding: 32px; text-align: center;">
+        <h1 style="color: #1B5E20; font-size: 2.2em; margin-bottom: 20px; font-weight: 700;">Introducing Our Latest Product</h1>
+        <p style="color: #555; font-size: 1.1em; margin-bottom: 24px;">{email_content}</p>
+        <div style="height: 1px; background: linear-gradient(to right, transparent, #ddd, transparent); margin: 20px 0;"></div>
+        <img src="https://res.cloudinary.com/dfgoyoeml/image/upload/v1735235116/xnsusjzul3kl5wexwfsd.jpg" alt="Product Image" style="width: 100%; max-width: 300px; height: auto; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s ease;">
+        <p><a href="{product_url}" style="display: inline-block; padding: 12px 28px; background-color: #2E7D32; color: white; text-decoration: none; border-radius: 25px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 20px; transition: background-color 0.3s ease, transform 0.2s ease;">Shop Now</a></p>
+        <div style="height: 1px; background: linear-gradient(to right, transparent, #ddd, transparent); margin: 20px 0;"></div>
+        <img src="https://res.cloudinary.com/dfgoyoeml/image/upload/v1735235161/jw8am7p3u7rvxuuwtoap.jpg" alt="Banner Image" style="width: 100%; height: auto; margin-top: 20px;">
+      </div>
+    </div>
+  </body>
+  </html>
+  
+
+# ReadME configuration
+readme: |
+  ## Email HTML Generator Flow
+  This flow generates a complete HTML email template for marketing campaigns based on the provided inputs.
+
+  ### Inputs:
+  - `hero_img_url`: URL for the hero section image.
+  - `product_img_url`: URL for the product image.
+  - `banner_img_url`: URL for the banner section image.
+  - `email_content`: The main content of the email.
+  - `product_url`: URL for the product page.
+
+  ### Output:
+  - A fully formatted HTML string ready to use in email campaigns.
+
+  ### How to Use:
+  1. Provide the URLs for the hero, product, and banner images, along with the email content and product URL.
+  2. The flow will return the final email in HTML format.
+  3. Use this HTML in your email marketing platform or campaign.
+
+  ### Notes:
+  - Ensure the image URLs are accessible and hosted on a reliable server.
+  - Customize the output further as needed for branding or specific email client requirements.

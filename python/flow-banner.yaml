@@ -1,0 +1,36 @@
+# Promotional Banner Flow
+version: "1.0.0"
+
+metadata:
+  name: "email-promo-banner-generator"
+  description: "Generates prompts for promotional banners that drive action"
+  author: "sasmit"
+  tags: [image, prompt, generation, promotional, banner]
+  private: false
+
+inputs:
+  offerType:
+    type: string
+    description: "Type of promotion"
+    required: true
+    example: "Flash Sale"
+  discountDetails:
+    type: string
+    description: "Specific discount or offer details"
+    required: true
+    example: "50% OFF"
+  
+model:
+  provider: "meta"
+  name: "llama-3.3-70b-instruct"
+
+prompt: |
+  Generate a promotional banner image prompt with these specifications:
+  Offer: {offerType}
+  Discount: {discountDetails}
+  
+  Consider these aspects:
+  - Create visual hierarchy emphasizing the offer
+  - Use dynamic elements to convey urgency
+  - Ensure readability at various sizes
+  - Include space for clear call-to-action
